@@ -1,0 +1,27 @@
+version: "3"
+
+tasks:
+  build:
+    desc: Compile and build the application
+    cmds:
+      - GOFLAGS=-mod=mod go build -o bin/go-rest-api internal/main.go
+
+  run:
+    desc: Run the application on dev mod
+    cmds:
+      - GOFLAGS=-mod=mod go run internal/main.go
+
+  swagger.gen:
+    desc: Generate Go code from swagger endpoints
+    cmds:
+      - GOFLAGS=-mod=mod go generate github.com/qqMelon/diablo-builder-api/internal github.com/qqMelon/diablo-builder-api/pkg/swagger
+
+  swagger.validate:
+    desc: Validate swagger generation
+    cmds:
+      - swagger validate pkg/swagger/swagger.yml
+
+  swagger.doc:
+    desc: Doc for swagger
+    cmds:
+      - docker run -i yousan/swagger-yaml-to-html < pkg/swagger/swagger.yml > docs/index.html
