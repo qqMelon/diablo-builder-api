@@ -4,7 +4,7 @@ tasks:
   build:
     desc: Compile and build the application
     cmds:
-      - GOFLAGS=-mod=mod go build -o bin/go-rest-api internal/main.go
+      - GOFLAGS=-mod=mod go build -o bin/diablo-builder-api internal/main.go
 
   run:
     desc: Run the application on dev mod
